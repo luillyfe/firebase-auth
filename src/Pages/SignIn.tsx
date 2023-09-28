@@ -1,5 +1,5 @@
-import { FormEvent, ChangeEvent, useState } from "react";
-import { signIn } from "../firebase";
+import { FormEvent, ChangeEvent, useState, useContext } from "react";
+import { AuthContext } from "../Auth";
 
 const initialState = {
   email: "",
@@ -8,6 +8,7 @@ const initialState = {
 
 export default function SignIn() {
   const [state, setState] = useState(initialState);
+  const { signIn } = useContext(AuthContext);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
