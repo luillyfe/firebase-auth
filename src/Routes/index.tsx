@@ -2,6 +2,7 @@ import { RouteObject } from "react-router-dom";
 
 import App from "../App";
 import SignIn from "../Pages/SignIn";
+import Home from "../Pages/Home";
 import NotFound from "../Pages/NotFound";
 
 const routes: RouteObject[] = [
@@ -13,6 +14,10 @@ const routes: RouteObject[] = [
       {
         path: "signin",
         element: <SignIn />,
+      },
+      {
+        path: "",
+        element: <Home />,
       },
     ],
   },
