@@ -1,4 +1,4 @@
-import SignIn from "./Pages/SignIn";
+import { Outlet } from "react-router-dom";
 
 import "./App.css";
 
@@ -13,7 +13,7 @@ function App() {
           </div>
         </div>
         <main role="main" className="w-full flex-grow pt-1 px-3">
-          <SignIn />
+          <Outlet />
         </main>
         <div className="w-fixed w-full flex-shrink flex-grow-0 px-2">
           {/* <!-- fixed-width --> */}
