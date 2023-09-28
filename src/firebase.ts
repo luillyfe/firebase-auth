@@ -4,7 +4,6 @@ import {
   AuthError,
   getAuth,
   signInWithEmailAndPassword,
-  connectAuthEmulator,
 } from "firebase/auth";
 import firebaseConfig from "./firebaseConfig.json";
 
@@ -22,6 +21,3 @@ export const signIn = (email: string, password: string) => {
       console.log(error.code, error.message);
     });
 };
-
-// using authentication emulator
-connectAuthEmulator(auth, "http://localhost:9099/");
