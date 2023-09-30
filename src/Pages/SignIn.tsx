@@ -8,11 +8,11 @@ const initialState = {
 
 export default function SignIn() {
   const [state, setState] = useState(initialState);
-  const { signIn } = useContext(AuthContext);
+  const { logIn } = useContext(AuthContext);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    signIn(state.email, state.password);
+    logIn(state.email, state.password);
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
