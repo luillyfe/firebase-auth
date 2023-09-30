@@ -1,7 +1,8 @@
 import { ReactElement, createContext, useContext, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { User } from "firebase/auth";
 
-import { signIn } from "./authentication";
+import { signIn, signOut } from "./authentication";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
 interface AuthContextT {
@@ -18,12 +19,26 @@ export const AuthContext = createContext<AuthContextT>({
 // for the insights
 function AuthProvider({ children }: { children: ReactElement }) {
   const [user, setUser] = useLocalStorage("user", null);
+  const navigate = useNavigate();
+
   const logIn = async (email: string, password: string) => {
     const user = await signIn(email, password);
     setUser(user);
+    navigate("/");
   };
 
-  const value = useMemo(() => ({ user, logIn }), [user]);
+  const logOut = () => {
+    signOut()
+      .then(() => {
+        setUser(null);
+        navigate("/signin", { replace: true });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  const value = useMemo(() => ({ user, logIn, logOut }), [user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
